@@ -1,0 +1,6 @@
+<h1>Task: <%= @task.title %></h1>
+<h4>Task details...</h4>
+<p><%= @task.details %></p>
+<p>Status: <strong><%= @task.completed %></strong></p>
+<%= link_to "Edit this task", edit_task_path(@task.id) %>
+<%= link_to "Back to all tasks", tasks_path %>
