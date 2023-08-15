@@ -1,16 +1,34 @@
 <h1>My Tasks</h1>
 
-<ul class="list-group">
+<ul class="list-group d-flex w-50">
   <% @tasks.each do |task| %>
-    <li class="list-group-item"><%= link_to task.title, task_path(task.id), class: 'text-decoration-none text-black' %>
-    ••<%= link_to "🗑️",
-              task_path(task.id),
-              data: {
-                turbo_method: :delete,
-                turbo_confirm: "Are you sure?"
-              } %>
-    </li>
+    <li class="list-group-item">
+      <div class='d-flex justify-content-start'>
+        <div>
+          <% if task.completed %>
+          <i class="fa-regular fa-square-check mx-1"></i>
+          <% else %>
+          <i class="fa-regular fa-square mx-1"></i>
+          <% end %>
+        </div>
+        <div class='d-flex justify-content-between w-100'>
+          <div>
+            <%= link_to task.title, task_path(task.id), class: 'text-decoration-none text-black' %>
+          </div>
+          <div>
+            <%= link_to "🗑️",
+                      task_path(task.id),
+                      data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      } %>
+          </div>
+        </div>
+      </div>
+  </li>
   <% end %>
 </ul>
 
-<%= link_to "Add a new task", new_task_path %>
+<div class='d-flex w-20'>
+  <%= link_to "Add a new task", new_task_path, class: 'btn btn-info my-2 text-white' %>
+</div>
